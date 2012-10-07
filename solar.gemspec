@@ -25,6 +25,7 @@ Gem::Specification.new do |s|
     "Rakefile",
     "VERSION",
     "lib/solar.rb",
+    "solar.gemspec",
     "test/helper.rb",
     "test/test_solar.rb"
   ]
