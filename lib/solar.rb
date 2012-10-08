@@ -23,16 +23,40 @@ module Solar
     # * :day_zenith zenith for the san at sunrise and sun set.
     #   Default: :official (sun aparently under the horizon, tangent to it)
     # These parameters can be assigned zenith values in degrees of the symbols:
-    # :official, :civil, :nautical or :astronomical.
+    #   :official, :civil, :nautical or :astronomical.
+    # Simple day night result (returning :day or :night) can be requested
+    # by setting :simple=>true (which usses the official day definition)
+    # or by setting a :zenith parameter to the fine the kind of day-night
+    # distinction.
+    # By passing :detailed=>true, the result will be one of:
+    #   :night, :astronomical_twilight, :nautical_twilight, :civil_twilight, :day
     def day_or_night(t, longitude, latitude, options={})
-      if options[:zenith]
-        twilight_altitude = day_altitude = altitude_from_options(options)
+      h, az = position(t, longitude, latitude)
+      options = {:zenith=>:official} if options[:simple]
+      if options[:detailed]
+        if h<Solar::ALTITUDES[:astronomical]
+          :night
+        elsif h<Solar::ALTITUDES[:nautical]
+          :astronomical_twilight
+        elsif h<Solar::ALTITUDES[:civil]
+          :nautical_twilight
+        elsif h<Solar::ALTITUDES[:official]
+          :civil_twilight
+        else
+          :day
+        end
       else
-        twilight_altitude = altitude_from_options(:zenith => options[:twilight_zenith] || :civil)
-        day_altitude = altitude_from_options(:zenith => options[:day_zenith] || :official)
+        # Determined :night / :twilight / :day state;
+        # twilight/day definition can be changed with options :zenith or :twilight_zenith, :day_zenith
+        if options[:zenith]
+          # only :day / :night distinction as defined by :zenith
+          twilight_altitude = day_altitude = altitude_from_options(options)
+        else
+          twilight_altitude = altitude_from_options(:zenith => options[:twilight_zenith] || :civil)
+          day_altitude = altitude_from_options(:zenith => options[:day_zenith] || :official)
+        end
+        (h > day_altitude) ? :day : (h <= twilight_altitude) ? :night : :twilight
       end
-      al,az = position(t, longitude, latitude)
-      (al > day_altitude) ? :day : (al <= twilight_altitude) ? :night : :twilight
     end
 
     # Sun horizontal coordinates (relative position) in degrees:
