@@ -27,6 +27,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activesupport
   bundler (~> 1)
   jeweler (~> 1.8.4)
   rdoc (~> 3.12)
