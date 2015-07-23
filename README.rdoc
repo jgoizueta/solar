@@ -1,6 +1,7 @@
 = solar
 
 Calculation of solar position, rise & set times for a given position & time.
+Also calculation of solar radiation and radiation on a sloped surface.
 
 == Contributing to solar
 
@@ -14,6 +15,5 @@ Calculation of solar position, rise & set times for a given position & time.
 
 == Copyright
 
-Copyright (c) 2012 Javier Goizueta. See LICENSE.txt for
+Copyright (c) 2012-2015 Javier Goizueta. See LICENSE.txt for
 further details.
-

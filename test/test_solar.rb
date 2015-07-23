@@ -26,4 +26,15 @@ class TestSolar < Test::Unit::TestCase
     assert_equal :day, Solar.day_or_night(Time.utc(2012,10,7,9,0,0), 0, -89)
   end
 
+  should "compute radiation accurately" do
+    # from [Duffie-1991] Example 1.10.1
+    dt = 600.0 # integrate in 10-minute steps
+    r = 0.0
+    (0...24*3600.0).step(dt) do |h|
+      t = Date.new(1991, 4, 15).to_time + h
+      r += dt*Solar.radiation(t, 0.0, 43.0, clearness_index: 1.0)*1E-6
+    end
+    assert_in_delta 33.8, r, 33.8*1E-3
+  end
+
 end
