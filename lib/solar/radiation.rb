@@ -43,6 +43,7 @@ module Solar
       # optional: diffuse radiation (horizontal)
       g_d = options[:diffuse_radiation]
       k_t = options[:clearness_index]
+      k_t ||= 1.0 if g.nil?
 
       # ground reflectance (albedo) as %
       rg = options[:albedo] || 0.2
