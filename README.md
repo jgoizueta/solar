@@ -100,11 +100,11 @@ puts situation.inspect # => :twilight
 
 Actually there are different
 [definitions of twilight](https://en.wikipedia.org/wiki/Twilight#Definitions)
-and you can differentiate between them with the `:detaild` option:
+and you can differentiate between them with the `:detailed` option:
 
 ```ruby
 situation = Solar.day_or_night(
-  Time.utc(2014,3,22,18,10), longitude, latitude, detaild: true
+  Time.utc(2014,3,22,18,10), longitude, latitude, detailed: true
 )
 puts situation.inspect # => :civil_twilight
 situation = Solar.day_or_night(
