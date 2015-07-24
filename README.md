@@ -37,7 +37,7 @@ The date as a `Date` object:
 date = Date.new(2014, 3, 22)
 ```
 
-The +passages+ method returns the time of sun rise, transit and set.
+The `passages` method returns the time of sun rise, transit and set.
 Transit refers to the moment the sun crosses the local meridian, i.e.
 to local solar noon.
 
@@ -53,14 +53,14 @@ puts set     # => Sat, 22 Mar 2014 18:07:51 +0000
 We can also compute the local relative position of the sun
 for a given instant and place.
 
-Now, instead of a +Date+ we need to specify a +Time+; e.g.
+Now, instead of a `Date` we need to specify a `Time`; e.g.
 we can specify the given date at 1 pm like so:
 
 ```ruby
 time = date.to_time + 13*3600.0
 ```
 
-The +position+ method returns the sun's elevation and azimuth in degrees
+The `position` method returns the sun's elevation and azimuth in degrees
 at the given time and place:
 
 ```ruby
@@ -89,7 +89,7 @@ situation = Solar.day_or_night(time, longitude, latitude)
 puts situation.inspect # => :day
 ```
 
-This method returns +:day+, +:night+ or +:twilight+.
+This method returns `:day`, `:night` or `:twilight`.
 Twilight refers to the period when the sun has set (appears under the hozizon)
 but the sky is not completely dark.
 
@@ -100,7 +100,7 @@ puts situation.inspect # => :twilight
 
 Actually there are different
 [definitions of twilight](https://en.wikipedia.org/wiki/Twilight#Definitions)
-and you can differentiate between them with the +:detaild+ option:
+and you can differentiate between them with the `:detaild` option:
 
 ```ruby
 situation = Solar.day_or_night(
@@ -123,7 +123,7 @@ puts situation.inspect # => :night
 
 ### Solar Radiation
 
-The +radiation+ method can compute the radiation (W per square meter)
+The `radiation` method can compute the radiation (W per square meter)
 on at a given time and location on a horizonta plane:
 
 ```ruby
@@ -146,7 +146,7 @@ puts r # 852.5943696877531
 But this method was not created to give estimates of the radiation, but
 to adjust measures of the global radiation on the horizontal to what
 a sloping surface would get. For this, we need to provide the
-measured radiation on a horizontal plane as +:global_radiation+:
+measured radiation on a horizontal plane as `:global_radiation`:
 
 ```ruby
 r = Solar.radiation(
@@ -163,7 +163,7 @@ Please refer to the code documentation for more information.
 
 * TODO: explain how to use ActiveSupport date & time methods, time zones, etc.
 * TODO: explain the use of zenith/elevations to work with civil/nautical/astronomcial etc.
-* TODO: more information about the uses of +radiation+
+* TODO: more information about the uses of `radiation`
 
 ## Development
 
