@@ -1,8 +1,7 @@
 require 'helper'
 
-class TestSolar < Test::Unit::TestCase
-
-  should "calculate transits for the required date" do
+class TestSolar < Minitest::Test
+  def test_solar_transits
     d = Date.new(2012,10,7)
     for lon in -360..360
       for lat in -5..5
@@ -13,7 +12,7 @@ class TestSolar < Test::Unit::TestCase
     end
   end
 
-  should "determine if it's day or night" do
+  def test_day_or_night
     assert_equal :day, Solar.day_or_night(Time.utc(2012,10,7,9,0,0), 0, 42)
     assert_equal :day, Solar.day_or_night(Time.utc(2012,10,7,9,0,0), 0, 42, :detailed=>true)
     assert_equal :day, Solar.day_or_night(Time.utc(2012,10,7,9,0,0), 0, 42, :simple=>true)
@@ -26,7 +25,7 @@ class TestSolar < Test::Unit::TestCase
     assert_equal :day, Solar.day_or_night(Time.utc(2012,10,7,9,0,0), 0, -89)
   end
 
-  should "compute radiation accurately" do
+  def test_radiation
     # from [Duffie-1991] Example 1.10.1
     dt = 600.0 # integrate in 10-minute steps
     r = 0.0
@@ -36,5 +35,4 @@ class TestSolar < Test::Unit::TestCase
     end
     assert_in_delta 33.8, r, 33.8*1E-3
   end
-
 end

@@ -7,6 +7,7 @@ require 'active_support/time'
 module Solar
 end
 
+require 'solar/version.rb'
 require 'solar/support.rb'
 require 'solar/passages.rb'
 require 'solar/position.rb'

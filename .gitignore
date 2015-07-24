@@ -1,23 +1,10 @@
-# rcov generated
-coverage
-coverage.data
-
-# rdoc generated
-rdoc
-
-# yard generated
-doc
-.yardoc
-
-# bundler
-.bundle
-
-# jeweler generated
-pkg
-
-# For MacOS:
-#
-.DS_Store
-
-# For rubinius:
-*.rbc
+/.bundle/
+/.yardoc
+/Gemfile.lock
+/_yardoc/
+/coverage/
+/doc/
+/pkg/
+/spec/reports/
+/tmp/
+/rdoc/
